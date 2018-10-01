@@ -1,0 +1,107 @@
+@*
+* Game template
+*@
+@import helper._
+@import play.api.data._
+@import play.api.data.Forms._
+
+@(
+        alphabet: Array[String] = Array("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"),
+        rows: Int = 10,
+        cols: Int = 10,
+        gridShip1: Grid = Grid(10, 10, 5),
+        gridShoot1: Array[Array[String]] = Array.ofDim[String](10, 10),
+        gridShip2: Array[Array[String]] = Array.ofDim[String](10, 10),
+        gridShoot2: Array[Array[String]] = Array.ofDim[String](10, 10)
+)
+
+@*
+* Call the `main` template with two arguments. The first
+* argument is a `String` with the title of the page, the second
+* argument is the body of the page.
+*@
+@main("Battleship") {
+
+    <div class="container">
+
+        @* Grid display *@
+        <div class="row mb-5">
+            <div class="col">
+                @* Table with player ships *@
+                <table class="table table-sm table-ship text-center">
+                    <tbody>
+                        <tr class="colLabel">
+                            <td></td>
+                            @for(l <- gridShip1.grid(0)) {
+                                <td>@l.colLabel</td>
+                            }
+                        </tr>
+                    @for(i <- gridShip1.grid) {
+                        <tr>
+                            <td  class="rowLabel">@i(0).rowLabel</td>
+                            @for(j <- i) {
+                                <td>X</td>
+                            }
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+            <div class="col">
+                @* Table to shoot opponent *@
+                <table class="table table-sm table-shoot text-center">
+                    <tbody>
+                    @for(i <- gridShoot1) {
+                        <tr>
+
+                        @for(j <- i) {
+                            <td>X</td>
+                        }
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <h3 class="col-12">5 Ships available</h3>
+            <ul class="list-group col">
+                @for(s <- 1 to gridShip1.nbShipN) {
+                    @* Ship form *@
+                    <li class="list-group-item">
+                        <form class="form-inline justify justify-content-between">
+                            <label class="sr-only" for="size">Name</label>
+                            <input type="number" class="form-control mb-2 mr-sm-2" id="size-@s" value="" placeholder="Size" min="0", max="5">
+
+                            <label class="sr-only" for="row">Row</label>
+                            <select id="row" class="form-control">
+                            @for(c <- 0 to gridShip1.grid.length) {
+                                <option>@c</option>
+                            }
+                            </select>
+                            <label class="sr-only" for="col">Col</label>
+                            <select id="col" class="form-control">
+                            @for(a <- alphabet if alphabet.indexOf(a) < gridShip1.grid.length) {
+                                <option>@a</option>
+                            }
+                            </select>
+
+                            <label class="sr-only" for="orientation">Orientation</label>
+                            <select id="orientation" class="form-control">
+                                <option>Right</option>
+                                <option>Left</option>
+                                <option>Top</option>
+                                <option>Bottom</option>
+                            </select>
+
+                            <button type="submit" class="btn btn-primary mb-2">Place</button>
+                        </form>
+                    </li>
+                }
+            </ul>
+        </div>
+
+    </div>
+
+}

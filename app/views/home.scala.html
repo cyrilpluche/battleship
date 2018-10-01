@@ -1,0 +1,54 @@
+@*
+* This template takes a single argument, a String containing a
+* message to display.
+*@
+@(message: String)
+
+
+
+@*
+* Call the `main` template with two arguments. The first
+* argument is a `String` with the title of the page, the second
+* argument is the body of the page.
+*@
+@main("Battleship") {
+
+    <div class="container">
+
+        <!-- Game mode -->
+        <div class="row mb-5">
+            <button type="button" class="btn btn-primary col mx-2">1 Player</button>
+            <button type="button" class="btn btn-primary col mx-2">2 Player</button>
+            <button type="button" class="btn btn-primary col mx-2">IA vs IA</button>
+        </div>
+
+        <form>
+            <div class="form-row mb-5">
+                <!-- AI 1 if needed -->
+                <div class="col">
+                    <label for="playerIA1">IA 1</label>
+                    <select class="form-control" id="playerIA1">
+                        <option>Easy</option>
+                        <option>Medium</option>
+                        <option>Hard</option>
+                    </select>
+                </div>
+                <!-- AI 2 if needed -->
+                <div class="col">
+                    <label for="playerIA2">IA 2</label>
+                    <select class="form-control" id="playerIA2">
+                        <option>Easy</option>
+                        <option>Medium</option>
+                        <option>Hard</option>
+                    </select>
+                </div>
+            </div>
+            <!-- Submit button -->
+            <div class="row justify-content-center">
+                <a href="@routes.GameController.game()">Let's play</a>
+            </div>
+        </form>
+
+    </div>
+
+}

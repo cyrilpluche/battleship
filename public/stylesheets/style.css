@@ -1,0 +1,33 @@
+body {
+    background-color: #efefef !important;
+}
+
+table {
+    width: 330px !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.table-ship {
+    background-color: #02C39A !important;
+}
+
+.table-shoot {
+    background-color: #028090 !important;
+}
+
+.btn-primary {
+    background-color: #05668D !important;
+}
+
+.td {
+    width: 33px !important;
+}
+
+.rowLabel {
+    background-color: white !important;
+}
+
+.colLabel {
+    background-color: white !important;
+}
